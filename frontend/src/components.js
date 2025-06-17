@@ -229,16 +229,16 @@ export const HeroSection = () => {
 export const RestaurantCard = ({ restaurant, onSelect }) => {
   return (
     <div 
-      className="bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow cursor-pointer"
+      className="bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-xl transition-all duration-300 cursor-pointer transform hover:scale-105 animate-fade-in hover-lift"
       onClick={() => onSelect(restaurant)}
     >
       <div className="relative h-48 overflow-hidden">
         <img 
           src={restaurant.image} 
           alt={restaurant.name}
-          className="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
+          className="w-full h-full object-cover hover:scale-110 transition-transform duration-500"
         />
-        <div className="absolute top-4 left-4 bg-white/90 backdrop-blur-sm rounded-full px-3 py-1">
+        <div className="absolute top-4 left-4 bg-white/90 backdrop-blur-sm rounded-full px-3 py-1 animate-slide-in">
           <span className="text-sm font-medium">⭐ {restaurant.rating}</span>
         </div>
       </div>
@@ -248,9 +248,9 @@ export const RestaurantCard = ({ restaurant, onSelect }) => {
         <p className="text-gray-600 mb-4">{restaurant.cuisine}</p>
         
         <div className="flex items-center justify-between text-sm text-gray-500">
-          <span>🕒 {restaurant.deliveryTime}</span>
-          <span>🚚 {restaurant.deliveryFee} ₽</span>
-          <span>💳 от {restaurant.minOrder} ₽</span>
+          <span className="flex items-center">🕒 {restaurant.deliveryTime}</span>
+          <span className="flex items-center">🚚 {restaurant.deliveryFee} ₽</span>
+          <span className="flex items-center">💳 от {restaurant.minOrder} ₽</span>
         </div>
       </div>
     </div>
