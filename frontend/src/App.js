@@ -88,7 +88,7 @@ function App() {
   const handleRegister = (registerData) => {
     const existingUser = users.find(u => u.phone === registerData.phone);
     if (existingUser) {
-      alert('Пользователь с таким номером телефона уже существует');
+      alert('مستخدم بهذا الرقم موجود بالفعل / User with this phone number already exists');
       return;
     }
 
