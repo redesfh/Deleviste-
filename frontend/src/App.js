@@ -81,7 +81,7 @@ function App() {
         setCurrentView('admin');
       }
     } else {
-      alert('Неверный номер телефона или пароль');
+      alert('رقم الهاتف أو كلمة المرور غير صحيحة / Invalid phone number or password');
     }
   };
 
