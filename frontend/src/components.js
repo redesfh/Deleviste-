@@ -320,7 +320,7 @@ export const RestaurantMenu = ({ restaurant, onAddToCart, onBack }) => {
   return (
     <div className="min-h-screen bg-gray-50">
       {/* Restaurant Header */}
-      <div className="relative h-64 bg-gradient-to-r from-gray-800 to-gray-900">
+      <div className="relative h-64 bg-gradient-to-r from-gray-800 to-gray-900 animate-fade-in">
         <img 
           src={restaurant.image} 
           alt={restaurant.name}
@@ -331,12 +331,12 @@ export const RestaurantMenu = ({ restaurant, onAddToCart, onBack }) => {
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
             <button
               onClick={onBack}
-              className="mb-4 bg-white/20 hover:bg-white/30 text-white px-4 py-2 rounded-lg backdrop-blur-sm transition-colors"
+              className="mb-4 bg-white/20 hover:bg-white/30 text-white px-4 py-2 rounded-lg backdrop-blur-sm transition-all duration-200 hover:scale-105 animate-slide-in"
             >
               ← Назад
             </button>
-            <h1 className="text-4xl font-bold text-white mb-4">{restaurant.name}</h1>
-            <div className="flex items-center space-x-6 text-white/90">
+            <h1 className="text-4xl font-bold text-white mb-4 animate-slide-in" style={{animationDelay: '0.2s'}}>{restaurant.name}</h1>
+            <div className="flex items-center space-x-6 text-white/90 animate-slide-in" style={{animationDelay: '0.4s'}}>
               <span>⭐ {restaurant.rating}</span>
               <span>🕒 {restaurant.deliveryTime}</span>
               <span>🚚 {restaurant.deliveryFee} ₽</span>
@@ -348,18 +348,19 @@ export const RestaurantMenu = ({ restaurant, onAddToCart, onBack }) => {
       
       {/* Menu */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        {categories.map(category => (
-          <div key={category} className="mb-12">
+        {categories.map((category, categoryIndex) => (
+          <div key={category} className="mb-12 animate-fade-in" style={{animationDelay: `${categoryIndex * 0.2}s`}}>
             <h2 className="text-2xl font-bold text-gray-900 mb-6">{category}</h2>
             <div className="space-y-4">
               {restaurant.menu
                 .filter(item => item.category === category)
-                .map(item => (
-                  <MenuItem 
-                    key={item.id} 
-                    item={item} 
-                    onAddToCart={onAddToCart}
-                  />
+                .map((item, itemIndex) => (
+                  <div key={item.id} className="animate-slide-in" style={{animationDelay: `${(categoryIndex * 0.2) + (itemIndex * 0.1)}s`}}>
+                    <MenuItem 
+                      item={item} 
+                      onAddToCart={onAddToCart}
+                    />
+                  </div>
                 ))}
             </div>
           </div>
