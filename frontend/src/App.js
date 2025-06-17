@@ -199,7 +199,7 @@ function App() {
         setCurrentView(currentView === 'admin' ? 'home' : 'admin');
       } else {
         // Show user menu or logout
-        if (window.confirm('Выйти из аккаунта?')) {
+        if (window.confirm('خروج من الحساب؟ / Logout?')) {
           handleLogout();
         }
       }
