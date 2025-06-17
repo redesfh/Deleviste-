@@ -343,7 +343,6 @@ function App() {
                       <div className="flex justify-between items-start">
                         <div>
                           <h3 className="font-semibold text-gray-900">{user.name}</h3>
-                          <p className="text-gray-600">{user.email}</p>
                           <p className="text-gray-600">{user.phone}</p>
                           <p className="text-gray-600">{user.address}</p>
                         </div>
