@@ -407,13 +407,15 @@ function App() {
         onRegister={handleRegister}
       />
       
-      <ShoppingCart
-        cartItems={cartItems}
-        onUpdateQuantity={updateCartQuantity}
-        onRemoveItem={removeFromCart}
-        onCheckout={handleCheckout}
-        onClose={() => setIsCartOpen(false)}
-      />
+      {isCartOpen && (
+        <ShoppingCart
+          cartItems={cartItems}
+          onUpdateQuantity={updateCartQuantity}
+          onRemoveItem={removeFromCart}
+          onCheckout={handleCheckout}
+          onClose={() => setIsCartOpen(false)}
+        />
+      )}
       
       <CheckoutModal
         isOpen={isCheckoutOpen}
