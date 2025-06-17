@@ -382,25 +382,90 @@ export const ShoppingCart = ({ cartItems, onUpdateQuantity, onRemoveItem, onChec
   const deliveryFee = subtotal >= 1000 ? 0 : 199;
   const total = subtotal + deliveryFee;
   
+  // Если корзина пуста, не рендерим компонент
   if (cartItems.length === 0) {
-    return (
-      <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 animate-fade-in">
-        <div className="bg-white rounded-2xl p-8 max-w-md w-full mx-4 animate-scale-in">
-          <div className="text-center">
-            <div className="text-6xl mb-4 animate-bounce">🛒</div>
-            <h2 className="text-2xl font-bold text-gray-900 mb-4">Корзина пуста</h2>
-            <p className="text-gray-600 mb-6">Добавьте блюда из меню ресторанов</p>
+    return null;
+  }
+  
+  return (
+    <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4 animate-fade-in">
+      <div className="bg-white rounded-2xl max-w-2xl w-full max-h-[90vh] overflow-y-auto animate-scale-in">
+        <div className="p-6 border-b">
+          <div className="flex items-center justify-between">
+            <h2 className="text-2xl font-bold text-gray-900">Корзина</h2>
             <button
               onClick={onClose}
-              className="bg-yellow-400 hover:bg-yellow-500 text-black font-medium px-6 py-3 rounded-lg transition-all duration-200 hover:transform hover:scale-105"
+              className="text-gray-400 hover:text-gray-600 text-2xl transition-colors duration-200 hover:rotate-90 transform"
             >
-              Продолжить покупки
+              ×
             </button>
           </div>
         </div>
+        
+        <div className="p-6">
+          <div className="space-y-4 mb-6">
+            {cartItems.map((item, index) => (
+              <div key={item.id} className="flex items-center space-x-4 py-4 border-b animate-slide-in" style={{animationDelay: `${index * 0.1}s`}}>
+                <img 
+                  src={item.image} 
+                  alt={item.name}
+                  className="w-16 h-16 object-cover rounded-lg transition-transform duration-200 hover:scale-110"
+                />
+                <div className="flex-1">
+                  <h3 className="font-semibold text-gray-900">{item.name}</h3>
+                  <p className="text-gray-600">{item.price} ₽</p>
+                </div>
+                <div className="flex items-center space-x-2">
+                  <button
+                    onClick={() => onUpdateQuantity(item.id, item.quantity - 1)}
+                    className="w-8 h-8 bg-gray-100 hover:bg-gray-200 rounded-full flex items-center justify-center transition-all duration-200 hover:scale-110"
+                  >
+                    -
+                  </button>
+                  <span className="w-8 text-center font-medium">{item.quantity}</span>
+                  <button
+                    onClick={() => onUpdateQuantity(item.id, item.quantity + 1)}
+                    className="w-8 h-8 bg-gray-100 hover:bg-gray-200 rounded-full flex items-center justify-center transition-all duration-200 hover:scale-110"
+                  >
+                    +
+                  </button>
+                </div>
+                <button
+                  onClick={() => onRemoveItem(item.id)}
+                  className="text-red-500 hover:text-red-700 font-medium transition-colors duration-200 hover:scale-105 transform"
+                >
+                  Удалить
+                </button>
+              </div>
+            ))}
+          </div>
+          
+          <div className="border-t pt-4 space-y-2 animate-slide-in">
+            <div className="flex justify-between">
+              <span>Сумма заказа:</span>
+              <span>{subtotal} ₽</span>
+            </div>
+            <div className="flex justify-between">
+              <span>Доставка:</span>
+              <span>{deliveryFee === 0 ? 'Бесплатно' : `${deliveryFee} ₽`}</span>
+            </div>
+            <div className="flex justify-between font-bold text-lg">
+              <span>Итого:</span>
+              <span>{total} ₽</span>
+            </div>
+          </div>
+          
+          <button
+            onClick={onCheckout}
+            className="w-full bg-yellow-400 hover:bg-yellow-500 text-black font-bold py-3 px-6 rounded-lg mt-6 transition-all duration-200 hover:transform hover:scale-105 hover:shadow-lg"
+          >
+            Оформить заказ
+          </button>
+        </div>
       </div>
-    );
-  }
+    </div>
+  );
+};
   
   return (
     <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4 animate-fade-in">
