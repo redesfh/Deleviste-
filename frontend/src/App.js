@@ -209,7 +209,7 @@ function App() {
   const handleCartClick = () => {
     if (cartItems.length === 0) {
       // Показываем уведомление, что корзина пуста
-      alert('Корзина пуста. Добавьте блюда из меню ресторанов!');
+      alert('السلة فارغة. أضف أطباق من قوائم المطاعم! / Cart is empty. Add dishes from restaurant menus!');
       return;
     }
     setIsCartOpen(true);
