@@ -286,7 +286,7 @@ export const RestaurantsGrid = ({ onSelectRestaurant }) => {
 // Menu Item Component
 export const MenuItem = ({ item, onAddToCart }) => {
   return (
-    <div className="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-lg transition-shadow">
+    <div className="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-lg transition-all duration-300 transform hover:scale-105 animate-fade-in">
       <div className="flex">
         <div className="flex-1 p-6">
           <h3 className="text-lg font-semibold text-gray-900 mb-2">{item.name}</h3>
@@ -295,17 +295,17 @@ export const MenuItem = ({ item, onAddToCart }) => {
             <span className="text-xl font-bold text-gray-900">{item.price} ₽</span>
             <button
               onClick={() => onAddToCart(item)}
-              className="bg-yellow-400 hover:bg-yellow-500 text-black font-medium px-4 py-2 rounded-lg transition-colors"
+              className="bg-yellow-400 hover:bg-yellow-500 text-black font-medium px-4 py-2 rounded-lg transition-all duration-200 hover:transform hover:scale-105 hover:shadow-md"
             >
               В корзину
             </button>
           </div>
         </div>
-        <div className="w-32 h-32 flex-shrink-0">
+        <div className="w-32 h-32 flex-shrink-0 overflow-hidden">
           <img 
             src={item.image} 
             alt={item.name}
-            className="w-full h-full object-cover"
+            className="w-full h-full object-cover transition-transform duration-300 hover:scale-110"
           />
         </div>
       </div>
