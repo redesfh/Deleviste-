@@ -40,8 +40,8 @@ function App() {
   const [users, setUsers] = useState([
     {
       id: 1,
-      name: 'Админ',
-      phone: '+7 (999) 999-99-99',
+      name: 'المدير',
+      phone: '+20 100 000 000',
       password: 'admin123',
       role: 'admin',
       points: 0,
