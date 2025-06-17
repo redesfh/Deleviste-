@@ -474,10 +474,9 @@ export const ShoppingCart = ({ cartItems, onUpdateQuantity, onRemoveItem, onChec
 export const AuthModal = ({ isOpen, onClose, onLogin, onRegister }) => {
   const [isLoginMode, setIsLoginMode] = useState(true);
   const [formData, setFormData] = useState({
-    email: '',
+    phone: '',
     password: '',
     name: '',
-    phone: '',
     address: ''
   });
 
@@ -492,16 +491,48 @@ export const AuthModal = ({ isOpen, onClose, onLogin, onRegister }) => {
     }
   };
 
+  const formatPhone = (value) => {
+    // Удаляем все нецифровые символы
+    const cleaned = value.replace(/\D/g, '');
+    
+    // Ограничиваем до 11 цифр
+    const limited = cleaned.slice(0, 11);
+    
+    // Форматируем как +7 (XXX) XXX-XX-XX
+    if (limited.length >= 1) {
+      let formatted = '+7';
+      if (limited.length > 1) {
+        formatted += ' (' + limited.slice(1, 4);
+        if (limited.length > 4) {
+          formatted += ') ' + limited.slice(4, 7);
+          if (limited.length > 7) {
+            formatted += '-' + limited.slice(7, 9);
+            if (limited.length > 9) {
+              formatted += '-' + limited.slice(9, 11);
+            }
+          }
+        }
+      }
+      return formatted;
+    }
+    return '+7';
+  };
+
+  const handlePhoneChange = (e) => {
+    const formatted = formatPhone(e.target.value);
+    setFormData({...formData, phone: formatted});
+  };
+
   return (
-    <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
-      <div className="bg-white rounded-2xl max-w-md w-full p-6">
+    <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4 animate-fade-in">
+      <div className="bg-white rounded-2xl max-w-md w-full p-6 animate-scale-in">
         <div className="flex items-center justify-between mb-6">
           <h2 className="text-2xl font-bold text-gray-900">
             {isLoginMode ? 'Вход' : 'Регистрация'}
           </h2>
           <button
             onClick={onClose}
-            className="text-gray-400 hover:text-gray-600 text-2xl"
+            className="text-gray-400 hover:text-gray-600 text-2xl transition-all duration-200 hover:rotate-90 transform"
           >
             ×
           </button>
@@ -514,18 +545,19 @@ export const AuthModal = ({ isOpen, onClose, onLogin, onRegister }) => {
               placeholder="Имя"
               value={formData.name}
               onChange={(e) => setFormData({...formData, name: e.target.value})}
-              className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-yellow-400"
+              className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-yellow-400 transition-all duration-200 animate-slide-in"
               required
             />
           )}
           
           <input
-            type="email"
-            placeholder="Email"
-            value={formData.email}
-            onChange={(e) => setFormData({...formData, email: e.target.value})}
-            className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-yellow-400"
+            type="tel"
+            placeholder="+7 (___) ___-__-__"
+            value={formData.phone}
+            onChange={handlePhoneChange}
+            className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-yellow-400 transition-all duration-200 animate-slide-in"
             required
+            style={{animationDelay: '0.1s'}}
           />
           
           <input
@@ -533,44 +565,36 @@ export const AuthModal = ({ isOpen, onClose, onLogin, onRegister }) => {
             placeholder="Пароль"
             value={formData.password}
             onChange={(e) => setFormData({...formData, password: e.target.value})}
-            className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-yellow-400"
+            className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-yellow-400 transition-all duration-200 animate-slide-in"
             required
+            style={{animationDelay: '0.2s'}}
           />
           
           {!isLoginMode && (
-            <>
-              <input
-                type="tel"
-                placeholder="Телефон"
-                value={formData.phone}
-                onChange={(e) => setFormData({...formData, phone: e.target.value})}
-                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-yellow-400"
-                required
-              />
-              
-              <textarea
-                placeholder="Адрес доставки"
-                value={formData.address}
-                onChange={(e) => setFormData({...formData, address: e.target.value})}
-                className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-yellow-400"
-                rows="3"
-                required
-              />
-            </>
+            <textarea
+              placeholder="Адрес доставки"
+              value={formData.address}
+              onChange={(e) => setFormData({...formData, address: e.target.value})}
+              className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-yellow-400 transition-all duration-200 animate-slide-in"
+              rows="3"
+              required
+              style={{animationDelay: '0.3s'}}
+            />
           )}
           
           <button
             type="submit"
-            className="w-full bg-yellow-400 hover:bg-yellow-500 text-black font-bold py-3 px-6 rounded-lg transition-colors"
+            className="w-full bg-yellow-400 hover:bg-yellow-500 text-black font-bold py-3 px-6 rounded-lg transition-all duration-200 hover:transform hover:scale-105 hover:shadow-lg animate-slide-in"
+            style={{animationDelay: '0.4s'}}
           >
             {isLoginMode ? 'Войти' : 'Зарегистрироваться'}
           </button>
         </form>
         
-        <div className="mt-4 text-center">
+        <div className="mt-4 text-center animate-slide-in" style={{animationDelay: '0.5s'}}>
           <button
             onClick={() => setIsLoginMode(!isLoginMode)}
-            className="text-yellow-600 hover:text-yellow-700 font-medium"
+            className="text-yellow-600 hover:text-yellow-700 font-medium transition-all duration-200 hover:scale-105 transform"
           >
             {isLoginMode ? 'Нет аккаунта? Зарегистрируйтесь' : 'Уже есть аккаунт? Войдите'}
           </button>
