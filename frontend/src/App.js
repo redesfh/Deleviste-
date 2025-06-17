@@ -206,6 +206,10 @@ function App() {
   };
 
   const handleCartClick = () => {
+    if (cartItems.length === 0) {
+      // Если корзина пуста, не показываем модальное окно
+      return;
+    }
     setIsCartOpen(true);
   };
 
