@@ -372,14 +372,15 @@ export const ShoppingCart = ({ cartItems, onUpdateQuantity, onRemoveItem, onChec
   
   if (cartItems.length === 0) {
     return (
-      <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50">
-        <div className="bg-white rounded-2xl p-8 max-w-md w-full mx-4">
+      <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 animate-fade-in">
+        <div className="bg-white rounded-2xl p-8 max-w-md w-full mx-4 animate-scale-in">
           <div className="text-center">
+            <div className="text-6xl mb-4 animate-bounce">🛒</div>
             <h2 className="text-2xl font-bold text-gray-900 mb-4">Корзина пуста</h2>
             <p className="text-gray-600 mb-6">Добавьте блюда из меню ресторанов</p>
             <button
               onClick={onClose}
-              className="bg-yellow-400 hover:bg-yellow-500 text-black font-medium px-6 py-3 rounded-lg transition-colors"
+              className="bg-yellow-400 hover:bg-yellow-500 text-black font-medium px-6 py-3 rounded-lg transition-all duration-200 hover:transform hover:scale-105"
             >
               Продолжить покупки
             </button>
