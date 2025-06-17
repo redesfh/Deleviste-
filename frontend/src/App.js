@@ -40,12 +40,11 @@ function App() {
     {
       id: 1,
       name: 'Админ',
-      email: 'admin@delivista.ru',
+      phone: '+7 (999) 999-99-99',
       password: 'admin123',
       role: 'admin',
       points: 0,
       address: '',
-      phone: '',
       orders: []
     }
   ]);
@@ -70,7 +69,7 @@ function App() {
 
   // Authentication functions
   const handleLogin = (loginData) => {
-    const user = users.find(u => u.email === loginData.email && u.password === loginData.password);
+    const user = users.find(u => u.phone === loginData.phone && u.password === loginData.password);
     if (user) {
       setCurrentUser(user);
       localStorage.setItem('delivista_user', JSON.stringify(user));
@@ -81,14 +80,14 @@ function App() {
         setCurrentView('admin');
       }
     } else {
-      alert('Неверный email или пароль');
+      alert('Неверный номер телефона или пароль');
     }
   };
 
   const handleRegister = (registerData) => {
-    const existingUser = users.find(u => u.email === registerData.email);
+    const existingUser = users.find(u => u.phone === registerData.phone);
     if (existingUser) {
-      alert('Пользователь с таким email уже существует');
+      alert('Пользователь с таким номером телефона уже существует');
       return;
     }
 
