@@ -194,26 +194,26 @@ export const Header = ({ currentUser, onAuthClick, cartItems, onCartClick, onLog
 // Hero Section Component
 export const HeroSection = () => {
   return (
-    <div className="relative bg-gradient-to-r from-yellow-400 to-orange-400 py-20">
+    <div className="relative bg-gradient-to-r from-yellow-400 to-orange-400 py-20 overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center">
-          <h1 className="text-4xl md:text-6xl font-bold text-white mb-6">
+          <h1 className="text-4xl md:text-6xl font-bold text-white mb-6 animate-fade-in">
             Доставка еды в Москве
           </h1>
-          <p className="text-xl text-white/90 mb-8 max-w-2xl mx-auto">
+          <p className="text-xl text-white/90 mb-8 max-w-2xl mx-auto animate-slide-in" style={{animationDelay: '0.3s'}}>
             Закажите любимые блюда из лучших ресторанов города. Быстрая доставка, свежие продукты.
           </p>
-          <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-8 max-w-lg mx-auto">
+          <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-8 max-w-lg mx-auto animate-scale-in" style={{animationDelay: '0.6s'}}>
             <div className="flex items-center justify-center space-x-8 text-white">
-              <div className="text-center">
+              <div className="text-center transform transition-all duration-300 hover:scale-110">
                 <div className="text-2xl font-bold">25 мин</div>
                 <div className="text-sm opacity-90">Средняя доставка</div>
               </div>
-              <div className="text-center">
+              <div className="text-center transform transition-all duration-300 hover:scale-110">
                 <div className="text-2xl font-bold">400+</div>
                 <div className="text-sm opacity-90">Ресторанов</div>
               </div>
-              <div className="text-center">
+              <div className="text-center transform transition-all duration-300 hover:scale-110">
                 <div className="text-2xl font-bold">4.8</div>
                 <div className="text-sm opacity-90">Рейтинг сервиса</div>
               </div>
@@ -221,6 +221,12 @@ export const HeroSection = () => {
           </div>
         </div>
       </div>
+      
+      {/* Floating elements for visual interest */}
+      <div className="absolute top-20 left-10 text-white/20 text-6xl animate-bounce" style={{animationDelay: '1s'}}>🍕</div>
+      <div className="absolute top-40 right-20 text-white/20 text-4xl animate-bounce" style={{animationDelay: '1.5s'}}>🍔</div>
+      <div className="absolute bottom-20 left-20 text-white/20 text-5xl animate-bounce" style={{animationDelay: '2s'}}>🍜</div>
+      <div className="absolute bottom-40 right-10 text-white/20 text-3xl animate-bounce" style={{animationDelay: '2.5s'}}>🍣</div>
     </div>
   );
 };
