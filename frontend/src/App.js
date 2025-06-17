@@ -9,6 +9,7 @@ import {
   AuthModal, 
   CheckoutModal, 
   OrderSuccessModal,
+  LanguageProvider,
   restaurantsData 
 } from './components';
 
