@@ -375,69 +375,71 @@ function App() {
 
   // Main render
   return (
-    <div className="App min-h-screen bg-gray-50">
-      <Header 
-        currentUser={currentUser}
-        onAuthClick={handleAuthClick}
-        cartItems={cartItems}
-        onCartClick={handleCartClick}
-        onLogoClick={handleBackToHome}
-      />
-      
-      {currentView === 'home' && (
-        <>
-          <HeroSection />
-          <RestaurantsGrid onSelectRestaurant={handleSelectRestaurant} />
-        </>
-      )}
-      
-      {currentView === 'restaurant' && selectedRestaurant && (
-        <RestaurantMenu 
-          restaurant={selectedRestaurant}
-          onAddToCart={addToCart}
-          onBack={handleBackToHome}
-        />
-      )}
-      
-      {currentView === 'admin' && currentUser?.role === 'admin' && (
-        <AdminPanel />
-      )}
-      
-      {/* Modals */}
-      <AuthModal
-        isOpen={isAuthModalOpen}
-        onClose={() => setIsAuthModalOpen(false)}
-        onLogin={handleLogin}
-        onRegister={handleRegister}
-      />
-      
-      {isCartOpen && (
-        <ShoppingCart
+    <LanguageProvider>
+      <div className="App min-h-screen bg-gray-50">
+        <Header 
+          currentUser={currentUser}
+          onAuthClick={handleAuthClick}
           cartItems={cartItems}
-          onUpdateQuantity={updateCartQuantity}
-          onRemoveItem={removeFromCart}
-          onCheckout={handleCheckout}
-          onClose={() => setIsCartOpen(false)}
+          onCartClick={handleCartClick}
+          onLogoClick={handleBackToHome}
         />
-      )}
-      
-      <CheckoutModal
-        isOpen={isCheckoutOpen}
-        onClose={() => setIsCheckoutOpen(false)}
-        cartItems={cartItems}
-        currentUser={currentUser}
-        onPlaceOrder={handlePlaceOrder}
-      />
-      
-      <OrderSuccessModal
-        isOpen={isOrderSuccessOpen}
-        onClose={() => {
-          setIsOrderSuccessOpen(false);
-          setLastOrderData(null);
-        }}
-        orderData={lastOrderData}
-      />
-    </div>
+        
+        {currentView === 'home' && (
+          <>
+            <HeroSection />
+            <RestaurantsGrid onSelectRestaurant={handleSelectRestaurant} />
+          </>
+        )}
+        
+        {currentView === 'restaurant' && selectedRestaurant && (
+          <RestaurantMenu 
+            restaurant={selectedRestaurant}
+            onAddToCart={addToCart}
+            onBack={handleBackToHome}
+          />
+        )}
+        
+        {currentView === 'admin' && currentUser?.role === 'admin' && (
+          <AdminPanel />
+        )}
+        
+        {/* Modals */}
+        <AuthModal
+          isOpen={isAuthModalOpen}
+          onClose={() => setIsAuthModalOpen(false)}
+          onLogin={handleLogin}
+          onRegister={handleRegister}
+        />
+        
+        {isCartOpen && (
+          <ShoppingCart
+            cartItems={cartItems}
+            onUpdateQuantity={updateCartQuantity}
+            onRemoveItem={removeFromCart}
+            onCheckout={handleCheckout}
+            onClose={() => setIsCartOpen(false)}
+          />
+        )}
+        
+        <CheckoutModal
+          isOpen={isCheckoutOpen}
+          onClose={() => setIsCheckoutOpen(false)}
+          cartItems={cartItems}
+          currentUser={currentUser}
+          onPlaceOrder={handlePlaceOrder}
+        />
+        
+        <OrderSuccessModal
+          isOpen={isOrderSuccessOpen}
+          onClose={() => {
+            setIsOrderSuccessOpen(false);
+            setLastOrderData(null);
+          }}
+          orderData={lastOrderData}
+        />
+      </div>
+    </LanguageProvider>
   );
 }
 
