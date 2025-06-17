@@ -299,7 +299,7 @@ function App() {
                         <div className="flex justify-between items-start">
                           <div>
                             <h3 className="font-semibold text-gray-900">Заказ #{order.id}</h3>
-                            <p className="text-gray-600">{user.name} • {user.email}</p>
+                            <p className="text-gray-600">{user.name} • {user.phone}</p>
                             <p className="text-gray-600">{order.address}</p>
                             <p className="text-sm text-gray-500">
                               {new Date(order.date).toLocaleDateString('ru-RU')} в {' '}
