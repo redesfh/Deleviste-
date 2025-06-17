@@ -1,5 +1,6 @@
-/* Import Google Fonts */
+/* Import Google Fonts for both languages */
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700;800&display=swap');
 
 /* Global styles */
 * {
@@ -15,6 +16,24 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   background-color: #f9fafb;
+}
+
+/* Arabic font support */
+html[lang="ar"], html[lang="ar"] * {
+  font-family: 'Cairo', 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+/* RTL support */
+html[dir="rtl"] {
+  direction: rtl;
+}
+
+html[dir="rtl"] .space-x-reverse > :not([hidden]) ~ :not([hidden]) {
+  --tw-space-x-reverse: 1;
+}
+
+html[dir="rtl"] .flex-row-reverse {
+  flex-direction: row-reverse;
 }
 
 .App {
@@ -77,6 +96,18 @@ body {
   }
 }
 
+/* RTL slide animation */
+html[dir="rtl"] @keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateX(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
 @keyframes scaleIn {
   from {
     opacity: 0;
@@ -85,6 +116,21 @@ body {
   to {
     opacity: 1;
     transform: scale(1);
+  }
+}
+
+@keyframes bounce {
+  0%, 20%, 53%, 80%, 100% {
+    transform: translate3d(0, 0, 0);
+  }
+  40%, 43% {
+    transform: translate3d(0, -30px, 0);
+  }
+  70% {
+    transform: translate3d(0, -15px, 0);
+  }
+  90% {
+    transform: translate3d(0, -4px, 0);
   }
 }
 
@@ -100,6 +146,10 @@ body {
   animation: scaleIn 0.2s ease-out forwards;
 }
 
+.animate-bounce {
+  animation: bounce 2s infinite;
+}
+
 /* Hover effects */
 .hover-lift {
   transition: transform 0.2s ease, box-shadow 0.2s ease;
@@ -112,8 +162,8 @@ body {
 
 /* Custom button styles */
 .btn-primary {
-  background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%);
-  color: #000;
+  background: linear-gradient(135deg, #f97316 0%, #ea580c 100%);
+  color: #fff;
   font-weight: 600;
   padding: 12px 24px;
   border-radius: 12px;
@@ -127,9 +177,9 @@ body {
 }
 
 .btn-primary:hover {
-  background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+  background: linear-gradient(135deg, #ea580c 0%, #c2410c 100%);
   transform: translateY(-1px);
-  box-shadow: 0 4px 12px rgba(251, 191, 36, 0.4);
+  box-shadow: 0 4px 12px rgba(249, 115, 22, 0.4);
 }
 
 .btn-secondary {
@@ -180,8 +230,8 @@ body {
 
 .form-input:focus {
   outline: none;
-  border-color: #fbbf24;
-  box-shadow: 0 0 0 3px rgba(251, 191, 36, 0.1);
+  border-color: #f97316;
+  box-shadow: 0 0 0 3px rgba(249, 115, 22, 0.1);
 }
 
 /* Badge styles */
@@ -212,7 +262,7 @@ body {
 /* Loading spinner */
 .spinner {
   border: 2px solid #f3f3f3;
-  border-top: 2px solid #fbbf24;
+  border-top: 2px solid #f97316;
   border-radius: 50%;
   width: 20px;
   height: 20px;
@@ -257,7 +307,7 @@ html {
 button:focus,
 input:focus,
 textarea:focus {
-  outline: 2px solid #fbbf24;
+  outline: 2px solid #f97316;
   outline-offset: 2px;
 }
 
@@ -280,6 +330,30 @@ img {
 
 /* Text selection */
 ::selection {
-  background: #fbbf24;
-  color: #000;
+  background: #f97316;
+  color: #fff;
+}
+
+/* Arabic number formatting */
+html[lang="ar"] .number {
+  font-family: 'Inter', monospace;
+  direction: ltr;
+  unicode-bidi: bidi-override;
+}
+
+/* Egypt-themed colors */
+.bg-egypt-gold {
+  background-color: #d4af37;
+}
+
+.bg-egypt-red {
+  background-color: #cc0000;
+}
+
+.text-egypt-gold {
+  color: #d4af37;
+}
+
+.text-egypt-red {
+  color: #cc0000;
 }
