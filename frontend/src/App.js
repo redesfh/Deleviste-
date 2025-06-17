@@ -78,7 +78,9 @@ function App() {
       
       // Redirect to admin if admin user
       if (user.role === 'admin') {
-        setCurrentView('admin');
+        if (window.confirm('هل تريد الدخول إلى لوحة الإدارة؟ / Go to admin panel?')) {
+          setCurrentView('admin');
+        }
       }
     } else {
       alert('رقم الهاتف أو كلمة المرور غير صحيحة / Invalid phone number or password');
