@@ -207,7 +207,8 @@ function App() {
 
   const handleCartClick = () => {
     if (cartItems.length === 0) {
-      // Если корзина пуста, не показываем модальное окно
+      // Показываем уведомление, что корзина пуста
+      alert('Корзина пуста. Добавьте блюда из меню ресторанов!');
       return;
     }
     setIsCartOpen(true);
